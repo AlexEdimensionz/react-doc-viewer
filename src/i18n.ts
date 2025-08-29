@@ -23,7 +23,6 @@ export const locales = {
   sr,
   sr_cyr,
   ja,
-  ru,
   se,
 };
 
