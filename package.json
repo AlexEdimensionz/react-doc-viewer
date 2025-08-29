@@ -11,9 +11,9 @@
     "doc-viewer"
   ],
   "license": "Apache License 2.0",
-  "homepage": "https://cyntler.github.io/react-doc-viewer",
+  "homepage": "https://e-dimensionz.com",
   "repository": {
-    "url": "https://github.com/cyntler/react-doc-viewer"
+    "url": "https://github.com/AlexEdimensionz/react-doc-viewer"
   },
   "files": [
     "dist/**"
