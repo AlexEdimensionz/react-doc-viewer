@@ -1,15 +1,4 @@
-[![npm-version](https://img.shields.io/npm/v/@cyntler/react-doc-viewer.svg)](https://www.npmjs.com/package/@cyntler/react-doc-viewer)
-[![npm-download](https://img.shields.io/npm/dt/@cyntler/react-doc-viewer.svg)](https://www.npmjs.com/package/@cyntler/react-doc-viewer)
-
-## I am stopping work on this library
-
-> [!WARNING]
-**Due to lack of free time to develop this library, I am stopping work on this library.<br>
-> It will not be developed in the near future.**
-
-# @cyntler/react-doc-viewer
-
-File viewer for **React v17+**.
+File viewer for **React v18+**.
 
 > This is a fork of https://github.com/Alcumus/react-doc-viewer (inactivity for a long time).
 
