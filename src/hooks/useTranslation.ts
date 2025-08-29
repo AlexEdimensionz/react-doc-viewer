@@ -1,3 +1,7 @@
+import { useCallback, useContext } from "react";
+import mustache from "mustache";
+import { DocViewerContext } from "../store/DocViewerProvider";
+import { defaultLanguage, locales } from "../i18n";
 export const useTranslation = () => {
   const {
     state: { language },
