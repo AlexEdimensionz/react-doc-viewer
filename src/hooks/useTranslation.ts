@@ -1,8 +1,3 @@
-import { useCallback, useContext } from "react";
-import mustache from "mustache";
-import { DocViewerContext } from "../store/DocViewerProvider";
-import { defaultLanguage, locales } from "../i18n";
-
 export const useTranslation = () => {
   const {
     state: { language },
@@ -14,7 +9,7 @@ export const useTranslation = () => {
     (
       key: keyof typeof defaultTranslations,
       variables?: Record<string, string | number>,
-    ) => {
+    ): string => {
       const translations = locales[language];
 
       if (translations[key]) {
@@ -25,12 +20,11 @@ export const useTranslation = () => {
         return mustache.render(defaultTranslations[key], variables);
       }
 
-      return key;
+      // force return as string
+      return String(key);
     },
     [language, defaultTranslations],
   );
 
-  return {
-    t,
-  };
+  return { t };
 };
