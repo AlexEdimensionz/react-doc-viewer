@@ -9,7 +9,6 @@ import ar from "./locales/ar.json";
 import sr from "./locales/sr.json";
 import sr_cyr from "./locales/sr_cyr.json";
 import ja from "./locales/ja.json";
-import ru from "./locales/ru.json";
 import se from "./locales/se.json";
 
 export const locales = {
