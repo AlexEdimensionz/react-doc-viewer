@@ -86,7 +86,7 @@ const Contents: React.FC<ContentsProps> = ({
           })}
           <DownloadButton
             id="no-renderer-download"
-            href={currentDocument?.uri}
+            href={currentDocument?.download_uri || currentDocument?.uri}
             download={currentDocument?.uri}
           >
             {t("downloadButtonLabel")}
