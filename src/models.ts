@@ -61,6 +61,7 @@ export interface IStyledProps {
 
 export interface IDocument {
   uri: string;
+  download_uri: string;
   fileType?: string;
   fileData?: string | ArrayBuffer;
   fileName?: string;
