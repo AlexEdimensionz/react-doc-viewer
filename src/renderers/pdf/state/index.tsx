@@ -43,15 +43,22 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
       type: SET_CURRENT_MAIN_STATE,
       value: mainState,
     });
-    
-    // Sync pdfPage from mainState to local PDF state when it changes
-    if (mainState.pdfPage && mainState.pdfPage !== state.currentPage) {
+  }, [mainState]);
+
+  // Sync pdfPage from mainState to local PDF state
+  // Only sync if PDF has loaded (numPages > 0) to prevent race conditions
+  useEffect(() => {
+    if (
+      mainState.pdfPage !== undefined &&
+      mainState.pdfPage !== state.currentPage &&
+      state.numPages > 0
+    ) {
       dispatch({
         type: SET_CURRENT_PAGE,
         value: mainState.pdfPage,
       });
     }
-  }, [mainState.pdfPage, state.currentPage, mainState]);
+  }, [mainState.pdfPage, state.currentPage, state.numPages]);
 
   return (
     <PDFContext.Provider value={{ state, dispatch }}>
