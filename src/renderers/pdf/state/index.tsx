@@ -7,7 +7,7 @@ import React, {
   useReducer,
 } from "react";
 import { IMainState } from "../../../store/mainStateReducer";
-import { PDFActions, SET_CURRENT_MAIN_STATE } from "./actions";
+import { PDFActions, SET_CURRENT_MAIN_STATE, SET_CURRENT_PAGE } from "./actions";
 import {
   initialPDFState,
   IPDFState,
@@ -43,7 +43,15 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
       type: SET_CURRENT_MAIN_STATE,
       value: mainState,
     });
-  }, [mainState]);
+    
+    // Sync pdfPage from mainState to local PDF state when it changes
+    if (mainState.pdfPage && mainState.pdfPage !== state.currentPage) {
+      dispatch({
+        type: SET_CURRENT_PAGE,
+        value: mainState.pdfPage,
+      });
+    }
+  }, [mainState.pdfPage, state.currentPage, mainState]);
 
   return (
     <PDFContext.Provider value={{ state, dispatch }}>

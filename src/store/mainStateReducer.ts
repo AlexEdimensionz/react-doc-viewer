@@ -13,6 +13,10 @@ import {
   SET_RENDERER_RECT,
   UpdateCurrentDocument,
   UPDATE_CURRENT_DOCUMENT,
+  SET_HIGHLIGHT_TEXT,
+  SET_HIGHLIGHT_INDEX,
+  CLEAR_HIGHLIGHT,
+  SET_PDF_PAGE,
 } from "./actions";
 import { AvailableLanguages, defaultLanguage } from "../i18n";
 
@@ -29,6 +33,11 @@ export type IMainState = {
   language: AvailableLanguages;
   activeDocument?: IDocument;
   onDocumentChange?: (document: IDocument) => void;
+  highlightText?: string;
+  highlightMatchCount?: number;
+  highlightCurrentIndex?: number;
+  pdfPage?: number;
+  onPdfPageChange?: (pageNumber: number) => void;
 };
 
 export const initialState: IMainState = {
@@ -40,6 +49,10 @@ export const initialState: IMainState = {
   config: {},
   pluginRenderers: [],
   language: defaultLanguage,
+  highlightText: undefined,
+  highlightMatchCount: 0,
+  highlightCurrentIndex: 0,
+  pdfPage: 1,
 };
 
 export type MainStateReducer = (
@@ -134,6 +147,52 @@ export const mainStateReducer: MainStateReducer = (
         ...state,
         config,
       };
+    }
+
+    case SET_HIGHLIGHT_TEXT: {
+      const { searchText, matchCount } = action as any;
+
+      return {
+        ...state,
+        highlightText: searchText,
+        highlightMatchCount: matchCount,
+        highlightCurrentIndex: 0,
+      };
+    }
+
+    case SET_HIGHLIGHT_INDEX: {
+      const { index } = action as any;
+
+      if (index < 0 || index >= (state.highlightMatchCount || 0)) {
+        return state;
+      }
+
+      return {
+        ...state,
+        highlightCurrentIndex: index,
+      };
+    }
+
+    case CLEAR_HIGHLIGHT: {
+      return {
+        ...state,
+        highlightText: undefined,
+        highlightMatchCount: 0,
+        highlightCurrentIndex: 0,
+      };
+    }
+
+    case SET_PDF_PAGE: {
+      const { value } = action as any;
+      const newState = {
+        ...state,
+        pdfPage: value,
+      };
+      // Call onPdfPageChange callback if it exists
+      if (state.onPdfPageChange) {
+        state.onPdfPageChange(value);
+      }
+      return newState;
     }
 
     default:
