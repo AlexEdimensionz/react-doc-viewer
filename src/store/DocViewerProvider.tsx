@@ -77,7 +77,7 @@ const DocViewerProvider = forwardRef<
     language: language && locales[language] ? language : defaultLanguage,
     activeDocument,
     onDocumentChange,
-    pdfPage: initialPdfPage !== undefined ? initialPdfPage : 1,
+    pdfPage: initialPdfPage || 1,
     onPdfPageChange,
   });
 
@@ -92,15 +92,11 @@ const DocViewerProvider = forwardRef<
     }
   }, [activeDocument]);
 
-  // Sync pdfPage prop to state whenever it changes
   useEffect(() => {
     if (pdfPage !== undefined && pdfPage !== state.pdfPage) {
       dispatch(setPdfPage(pdfPage));
-      if (onPdfPageChange) {
-        onPdfPageChange(pdfPage);
-      }
     }
-  }, [pdfPage, state.pdfPage, onPdfPageChange]);
+  }, [pdfPage, state.pdfPage]);
 
   useImperativeHandle(
     ref,

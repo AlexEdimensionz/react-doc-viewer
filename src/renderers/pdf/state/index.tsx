@@ -44,15 +44,24 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
       value: mainState,
     });
     
+<<<<<<< HEAD
     // Sync pdfPage from mainState to local PDF state immediately
     // React-pdf will handle rendering the correct page once loaded
     if (mainState.pdfPage !== undefined && mainState.pdfPage !== state.currentPage) {
+=======
+    // Sync pdfPage from mainState to local PDF state when it changes
+    if (mainState.pdfPage && mainState.pdfPage !== state.currentPage) {
+>>>>>>> parent of b83c3a9... fix: resolve page navigation issues with pdfPage and initialPdfPage props
       dispatch({
         type: SET_CURRENT_PAGE,
         value: mainState.pdfPage,
       });
     }
+<<<<<<< HEAD
   }, [mainState.pdfPage, state.currentPage]);
+=======
+  }, [mainState.pdfPage, state.currentPage, mainState]);
+>>>>>>> parent of b83c3a9... fix: resolve page navigation issues with pdfPage and initialPdfPage props
 
   return (
     <PDFContext.Provider value={{ state, dispatch }}>
