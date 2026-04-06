@@ -7,10 +7,6 @@ export const PREVIOUS_DOCUMENT = "PREVIOUS_DOCUMENT";
 export const UPDATE_CURRENT_DOCUMENT = "UPDATE_CURRENT_DOCUMENT";
 export const SET_RENDERER_RECT = "SET_RENDERER_RECT";
 export const SET_MAIN_CONFIG = "SET_MAIN_CONFIG";
-export const SET_HIGHLIGHT_TEXT = "SET_HIGHLIGHT_TEXT";
-export const SET_HIGHLIGHT_INDEX = "SET_HIGHLIGHT_INDEX";
-export const CLEAR_HIGHLIGHT = "CLEAR_HIGHLIGHT";
-export const SET_PDF_PAGE = "SET_PDF_PAGE";
 
 export interface SetAllDocuments {
   type: typeof SET_ALL_DOCUMENTS;
@@ -80,49 +76,6 @@ export const setMainConfig = (config: IConfig): SetMainConfig => ({
   config,
 });
 
-export interface SetHighlightText {
-  type: typeof SET_HIGHLIGHT_TEXT;
-  searchText: string;
-  matchCount: number;
-}
-
-export interface SetHighlightIndex {
-  type: typeof SET_HIGHLIGHT_INDEX;
-  index: number;
-}
-
-export interface ClearHighlight {
-  type: typeof CLEAR_HIGHLIGHT;
-}
-
-export const setHighlightText = (
-  searchText: string,
-  matchCount: number = 0,
-): SetHighlightText => ({
-  type: SET_HIGHLIGHT_TEXT,
-  searchText,
-  matchCount,
-});
-
-export const setHighlightIndex = (index: number): SetHighlightIndex => ({
-  type: SET_HIGHLIGHT_INDEX,
-  index,
-});
-
-export const clearHighlight = (): ClearHighlight => ({
-  type: CLEAR_HIGHLIGHT,
-});
-
-export interface SetPdfPage {
-  type: typeof SET_PDF_PAGE;
-  value: number;
-}
-
-export const setPdfPage = (value: number): SetPdfPage => ({
-  type: SET_PDF_PAGE,
-  value,
-});
-
 export type MainStateActions =
   | SetAllDocuments
   | SetDocumentLoading
@@ -130,8 +83,4 @@ export type MainStateActions =
   | PreviousDocument
   | UpdateCurrentDocument
   | SetRendererRect
-  | SetMainConfig
-  | SetHighlightText
-  | SetHighlightIndex
-  | ClearHighlight
-  | SetPdfPage;
+  | SetMainConfig;
