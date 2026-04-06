@@ -1,6 +1,6 @@
 {
   "name": "react-doc-viewer",
-  "version": "1.18.1",
+  "version": "1.18.0",
   "description": "File viewer for React.",
   "author": "Matthew Mogford / Alex-edz",
   "type": "module",

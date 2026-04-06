@@ -2,11 +2,6 @@ import { FC, ReactElement, ComponentType, PropsWithChildren } from "react";
 import { IMainState } from "./store/mainStateReducer";
 import { FileLoaderFunction } from "./utils/fileLoaders";
 
-export interface IPdfPageConfig {
-  initialPage?: number;
-  currentPage?: number;
-}
-
 export interface IConfig {
   header?: IHeaderConfig;
   loadingRenderer?: ILoadingRendererConfig;
@@ -14,7 +9,6 @@ export interface IConfig {
   csvDelimiter?: string;
   pdfZoom?: IPdfZoomConfig;
   pdfVerticalScrollByDefault?: boolean;
-  pdfPage?: IPdfPageConfig;
 }
 
 export interface ILoadingRendererConfig {
@@ -86,18 +80,4 @@ export interface DocRenderer extends FC<PropsWithChildren<DocRendererProps>> {
 export interface DocViewerRef {
   prev: () => void;
   next: () => void;
-  /** Set text to highlight with case and whitespace insensitive matching */
-  setHighlight: (searchText: string) => void;
-  /** Move to next highlight match */
-  nextHighlight: () => void;
-  /** Move to previous highlight match */
-  prevHighlight: () => void;
-  /** Clear all highlights */
-  clearHighlight: () => void;
-  /** Jump to specific PDF page (1-indexed) */
-  goToPage: (pageNumber: number) => void;
-  /** Auto-scroll to specific coordinates */
-  scrollToPosition: (x: number, y: number, options?: { smooth?: boolean; block?: ScrollLogicalPosition }) => void;
-  /** Auto-scroll to first element matching selector */
-  scrollToElement: (selector: string, options?: { smooth?: boolean; block?: ScrollLogicalPosition }) => void;
 }

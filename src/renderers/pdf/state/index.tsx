@@ -7,7 +7,7 @@ import React, {
   useReducer,
 } from "react";
 import { IMainState } from "../../../store/mainStateReducer";
-import { PDFActions, SET_CURRENT_MAIN_STATE, SET_CURRENT_PAGE } from "./actions";
+import { PDFActions, SET_CURRENT_MAIN_STATE } from "./actions";
 import {
   initialPDFState,
   IPDFState,
@@ -43,6 +43,7 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
       type: SET_CURRENT_MAIN_STATE,
       value: mainState,
     });
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     
@@ -89,6 +90,9 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
 =======
   }, [mainState.pdfPage, state.currentPage, mainState]);
 >>>>>>> parent of b83c3a9... fix: resolve page navigation issues with pdfPage and initialPdfPage props
+=======
+  }, [mainState]);
+>>>>>>> parent of b8034df... docs: add comprehensive feature documentation for highlighting, page navigation, and usage guide
 
   return (
     <PDFContext.Provider value={{ state, dispatch }}>

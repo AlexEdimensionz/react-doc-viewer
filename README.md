@@ -7,54 +7,6 @@ File viewer for **React v18+**.
 > [!IMPORTANT]
 > This library uses the official MS Office online document viewing service. This means it works on an iframe basis and only supports public file URLs! Therefore, it may not be compatible with all projects. Currently, there is no way to natively render MS Office documents in the browser.
 
-## ✨ New Features
-
-### 🔍 Text Highlighting & Search
-Find and highlight text in documents with case and whitespace-insensitive matching. Navigate between matches with keyboard shortcuts.
-
-**Quick Start:**
-```typescript
-const ref = useRef<DocViewerRef>(null);
-
-ref.current?.setHighlight('search term');      // Find and highlight all matches
-ref.current?.nextHighlight();                   // Navigate to next match
-ref.current?.prevHighlight();                   // Navigate to previous match
-ref.current?.clearHighlight();                  // Remove all highlights
-```
-
-[📖 Full Text Highlighting Documentation](./HIGHLIGHT_FEATURE.md)
-
-### 📄 PDF Page Navigation & Scrolling
-Control PDF page navigation programmatically and implement custom scroll behavior.
-
-**Quick Start:**
-```typescript
-const ref = useRef<DocViewerRef>(null);
-
-ref.current?.goToPage(5);                       // Jump to page 5
-ref.current?.scrollToPosition(0, 100);          // Scroll to coordinates
-ref.current?.scrollToElement('.target');        // Scroll to element
-
-// Or use controlled props
-<DocViewer pdfPage={currentPage} onPdfPageChange={setCurrentPage} initialPdfPage={1} />
-```
-
-[📖 Full Page Navigation Documentation](./PDF_NAVIGATION_API.md)
-
-### 🔒 Enhanced Security
-- HTML content sanitization with DOMPurify
-- URI validation preventing SSRF attacks
-- Filename sanitization preventing path traversal
-- Fixed 79 security vulnerabilities
-- Safe rendering of images, videos, and documents
-
-[📖 Security Improvements](./IMPROVEMENTS_SUMMARY.md)
-
-### 📚 Complete Feature Guide
-See real-world examples and best practices for all features.
-
-[📖 Complete Usage Guide with Examples](./COMPLETE_USAGE_GUIDE.md)
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
