@@ -44,6 +44,7 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
       value: mainState,
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 <<<<<<< HEAD
     // Sync pdfPage from mainState to local PDF state immediately
@@ -65,11 +66,17 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
       state.numPages > 0
     ) {
 >>>>>>> parent of 3efe304... fix: resolve page navigation sync issue - remove numPages guard
+=======
+    
+    // Sync pdfPage from mainState to local PDF state when it changes
+    if (mainState.pdfPage && mainState.pdfPage !== state.currentPage) {
+>>>>>>> parent of b83c3a9... fix: resolve page navigation issues with pdfPage and initialPdfPage props
       dispatch({
         type: SET_CURRENT_PAGE,
         value: mainState.pdfPage,
       });
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   }, [mainState.pdfPage, state.currentPage]);
@@ -79,6 +86,9 @@ const PDFProvider: FC<PropsWithChildren<{ mainState: IMainState }>> = ({
 =======
   }, [mainState.pdfPage, state.currentPage, state.numPages]);
 >>>>>>> parent of 3efe304... fix: resolve page navigation sync issue - remove numPages guard
+=======
+  }, [mainState.pdfPage, state.currentPage, mainState]);
+>>>>>>> parent of b83c3a9... fix: resolve page navigation issues with pdfPage and initialPdfPage props
 
   return (
     <PDFContext.Provider value={{ state, dispatch }}>
