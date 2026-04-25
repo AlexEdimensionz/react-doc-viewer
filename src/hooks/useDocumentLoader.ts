@@ -24,8 +24,6 @@ export const useDocumentLoader = (): {
 } => {
   const { state, dispatch } = useContext(DocViewerContext);
   const { currentFileNo, currentDocument, prefetchMethod, requestCredentials } = state;
-  console.log("[DocViewer] state.requestCredentials:", requestCredentials);
-  console.log("[DocViewer] state.requestHeaders:", state?.requestHeaders);
 
   const { CurrentRenderer } = useRendererSelector();
 
@@ -38,7 +36,6 @@ export const useDocumentLoader = (): {
       const controller = new AbortController();
       const { signal } = controller;
 
-      console.log("[DocViewer] prefetch fetch:", documentURI, { method: prefetchMethod || documentURI.startsWith("blob:") ? "GET" : "HEAD", headers: state?.requestHeaders, credentials: requestCredentials });
       fetch(documentURI, {
         method:
           prefetchMethod || documentURI.startsWith("blob:") ? "GET" : "HEAD",
@@ -93,7 +90,6 @@ export const useDocumentLoader = (): {
       dispatch(setDocumentLoading(false));
     };
 
-    console.log("[DocViewer] fileLoader props:", { documentURI, headers: state?.requestHeaders, credentials: requestCredentials });
     const loaderFunctionProps: FileLoaderFuncProps = {
       documentURI,
       signal,
