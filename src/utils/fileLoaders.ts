@@ -26,6 +26,7 @@ const _fileLoader: BaseFileLoaderFunction = ({
   headers,
   credentials,
 }) => {
+  console.log("[DocViewer] _fileLoader fetch:", documentURI, { headers, credentials });
   return fetch(documentURI, { signal, headers, credentials })
     .then(async (res) => {
       const blob = await res.blob();
