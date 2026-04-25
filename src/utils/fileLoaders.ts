@@ -3,6 +3,7 @@ export interface FileLoaderFuncProps {
   signal: AbortSignal;
   fileLoaderComplete: FileLoaderComplete;
   headers?: Record<string, string>;
+  credentials?: RequestCredentials;
 }
 
 export type FileLoaderComplete = (fileReader?: FileReader) => void;
@@ -12,6 +13,7 @@ type ReaderTypeFunction = "dataURL" | "arrayBuffer" | "binaryString" | "text";
 
 interface BaseFileLoaderFuncOptions extends FileLoaderFuncProps {
   readerTypeFunction: ReaderTypeFunction;
+  credentials?: RequestCredentials;
 }
 
 type BaseFileLoaderFunction = (props: BaseFileLoaderFuncOptions) => void;
@@ -22,8 +24,9 @@ const _fileLoader: BaseFileLoaderFunction = ({
   fileLoaderComplete,
   readerTypeFunction,
   headers,
+  credentials,
 }) => {
-  return fetch(documentURI, { signal, headers })
+  return fetch(documentURI, { signal, headers, credentials })
     .then(async (res) => {
       const blob = await res.blob();
 

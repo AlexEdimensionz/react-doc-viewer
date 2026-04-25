@@ -23,7 +23,7 @@ export const useDocumentLoader = (): {
   CurrentRenderer: DocRenderer | null | undefined;
 } => {
   const { state, dispatch } = useContext(DocViewerContext);
-  const { currentFileNo, currentDocument, prefetchMethod } = state;
+  const { currentFileNo, currentDocument, prefetchMethod, requestCredentials } = state;
 
   const { CurrentRenderer } = useRendererSelector();
 
@@ -41,6 +41,7 @@ export const useDocumentLoader = (): {
           prefetchMethod || documentURI.startsWith("blob:") ? "GET" : "HEAD",
         signal,
         headers: state?.requestHeaders,
+        credentials: requestCredentials,
       })
         .then((response) => {
           const contentTypeRaw = response.headers.get("content-type");
@@ -94,6 +95,7 @@ export const useDocumentLoader = (): {
       signal,
       fileLoaderComplete,
       headers: state?.requestHeaders,
+      credentials: requestCredentials,
     };
 
     if (CurrentRenderer === null) {

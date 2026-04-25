@@ -41,6 +41,7 @@ const DocViewerProvider = forwardRef<
     pluginRenderers,
     prefetchMethod,
     requestHeaders,
+    requestCredentials,
     initialActiveDocument,
     language,
     activeDocument,
@@ -60,6 +61,7 @@ const DocViewerProvider = forwardRef<
     pluginRenderers,
     prefetchMethod,
     requestHeaders,
+    requestCredentials,
     currentFileNo: initialActiveDocument
       ? documents.findIndex((doc) => doc === initialActiveDocument) ?? 0
       : 0,
